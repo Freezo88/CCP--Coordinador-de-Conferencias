@@ -1,45 +1,42 @@
-export default function Sidebar() {
+type Props = {
+  cambiarPagina: (pagina: string) => void;
+};
 
-  const menu = [
-    "🏠 Inicio",
-    "📅 Agenda",
-    "👤 Oradores",
-    "📖 Conferencias",
-    "🚗 Salidas",
-    "📥 Invitaciones",
-    "📜 Historial",
-    "📊 Informes",
-    "⚙ Configuración",
-  ];
-
+export default function Sidebar({ cambiarPagina }: Props) {
   return (
     <div
       style={{
-        width: "240px",
-        backgroundColor: "#1f4e79",
+        width: "220px",
+        background: "#1f4e79",
         color: "white",
-        minHeight: "100vh",
         padding: "20px",
-        boxSizing: "border-box",
+        minHeight: "100vh",
       }}
     >
       <h2>📖 CCP</h2>
 
       <hr />
 
-      {menu.map((opcion) => (
-        <div
-          key={opcion}
-          style={{
-            padding: "10px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            marginTop: "5px",
-          }}
-        >
-          {opcion}
-        </div>
-      ))}
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => cambiarPagina("inicio")}
+      >
+        🏠 Inicio
+      </p>
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => cambiarPagina("agenda")}
+      >
+        📅 Agenda
+      </p>
+
+      <p
+        style={{ cursor: "pointer" }}
+        onClick={() => cambiarPagina("oradores")}
+      >
+        👤 Oradores
+      </p>
     </div>
   );
 }

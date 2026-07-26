@@ -1,6 +1,12 @@
+import { useState } from "react";
+
 import Sidebar from "../components/Sidebar";
+import Agenda from "./Agenda";
+import Oradores from "./Oradores";
 
 export default function Home() {
+  const [pagina, setPagina] = useState("inicio");
+
   return (
     <div
       style={{
@@ -9,7 +15,7 @@ export default function Home() {
         minHeight: "100vh",
       }}
     >
-      <Sidebar />
+      <Sidebar cambiarPagina={setPagina} />
 
       <main
         style={{
@@ -17,30 +23,33 @@ export default function Home() {
           padding: "40px",
         }}
       >
-        <h1>📖 Coordinador de Conferencias</h1>
+        {pagina === "inicio" && (
+          <>
+            <h1>📖 Coordinador de Conferencias</h1>
 
-        <p style={{ color: "#666" }}>
-          Congregación Durazno
-        </p>
+            <p>Congregación Durazno</p>
 
-        <div
-          style={{
-            background: "white",
-            padding: "25px",
-            borderRadius: "12px",
-            marginTop: "30px",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-            maxWidth: "500px",
-          }}
-        >
-          <h2>📅 Próximo sábado</h2>
+            <div
+              style={{
+                background: "white",
+                padding: "25px",
+                borderRadius: "10px",
+              }}
+            >
+              <h2>Próximo sábado</h2>
 
-          <p><strong>Conferencia:</strong> Sin programar</p>
+              <p>Conferencia: Sin programar</p>
 
-          <p><strong>Orador:</strong> Sin asignar</p>
+              <p>Orador: Sin asignar</p>
 
-          <p><strong>Estado:</strong> Pendiente</p>
-        </div>
+              <p>Estado: Pendiente</p>
+            </div>
+          </>
+        )}
+
+        {pagina === "agenda" && <Agenda />}
+
+        {pagina === "oradores" && <Oradores />}
       </main>
     </div>
   );
