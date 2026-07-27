@@ -18,24 +18,31 @@ export default function Sidebar({ cambiarPagina }: Props) {
       <hr />
 
       <p
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", marginBottom: "15px" }}
         onClick={() => cambiarPagina("inicio")}
       >
         🏠 Inicio
       </p>
 
       <p
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", marginBottom: "15px" }}
         onClick={() => cambiarPagina("agenda")}
       >
         📅 Agenda
       </p>
 
       <p
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", marginBottom: "15px" }}
         onClick={() => cambiarPagina("oradores")}
       >
         👤 Oradores
+      </p>
+
+      <p
+        style={{ cursor: "pointer", marginBottom: "15px" }}
+        onClick={() => cambiarPagina("conferencias")}
+      >
+        📖 Conferencias
       </p>
     </div>
   );

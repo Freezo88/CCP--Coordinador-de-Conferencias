@@ -1,8 +1,11 @@
+
 import { useState } from "react";
 
 import Sidebar from "../components/Sidebar";
+
 import Agenda from "./Agenda";
 import Oradores from "./Oradores";
+import Conferencias from "./Conferencias";
 
 export default function Home() {
   const [pagina, setPagina] = useState("inicio");
@@ -38,7 +41,7 @@ export default function Home() {
             >
               <h2>Próximo sábado</h2>
 
-              <p>Conferencia: Sin programar</p>
+              <p>Conferencia: Sin asignar</p>
 
               <p>Orador: Sin asignar</p>
 
@@ -50,6 +53,8 @@ export default function Home() {
         {pagina === "agenda" && <Agenda />}
 
         {pagina === "oradores" && <Oradores />}
+
+        {pagina === "conferencias" && <Conferencias />}
       </main>
     </div>
   );
