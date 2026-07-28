@@ -62,7 +62,7 @@ export default function Conferencias() {
       return;
     }
 
-    setConferencias([
+        setConferencias([
       ...conferencias,
       {
         id: Date.now(),
@@ -75,6 +75,16 @@ export default function Conferencias() {
     ]);
 
     limpiarFormulario();
+  }
+
+  function editarConferencia(conferencia: Conferencia) {
+    setNumero(conferencia.numero.toString());
+    setTitulo(conferencia.titulo);
+    setDuracion(conferencia.duracion.toString());
+    setObservaciones(conferencia.observaciones);
+
+    setIdEditando(conferencia.id);
+    setMostrarFormulario(true);
   }
 
   return (
@@ -149,6 +159,19 @@ export default function Conferencias() {
             {" "}
             {c.observaciones || "-"}
           </p>
+          <button
+  onClick={() => editarConferencia(c)}
+  style={{
+    marginTop: "10px",
+    background: "#ffc107",
+    border: "none",
+    padding: "8px 15px",
+    borderRadius: "8px",
+    cursor: "pointer",
+  }}
+>
+  ✏️ Editar
+</button>
         </div>
       ))}
     </div>
