@@ -77,17 +77,27 @@ export default function Conferencias() {
     limpiarFormulario();
   }
 
-  function editarConferencia(conferencia: Conferencia) {
-    setNumero(conferencia.numero.toString());
-    setTitulo(conferencia.titulo);
-    setDuracion(conferencia.duracion.toString());
-    setObservaciones(conferencia.observaciones);
+function editarConferencia(conferencia: Conferencia) {
+  setNumero(conferencia.numero.toString());
+  setTitulo(conferencia.titulo);
+  setDuracion(conferencia.duracion.toString());
+  setObservaciones(conferencia.observaciones);
 
-    setIdEditando(conferencia.id);
-    setMostrarFormulario(true);
+  setIdEditando(conferencia.id);
+  setMostrarFormulario(true);
+}
+
+function eliminarConferencia(id: number) {
+  if (!confirm("¿Está seguro que desea eliminar esta conferencia?")) {
+    return;
   }
 
-  return (
+  setConferencias(
+    conferencias.filter((c) => c.id !== id)
+  );
+}
+
+return (
     <div>
       <h1>📖 Conferencias</h1>
 
@@ -171,6 +181,22 @@ export default function Conferencias() {
   }}
 >
   ✏️ Editar
+</button>
+
+<button
+  onClick={() => eliminarConferencia(c.id)}
+  style={{
+    marginTop: "10px",
+    marginLeft: "10px",
+    background: "#dc3545",
+    color: "white",
+    border: "none",
+    padding: "8px 15px",
+    borderRadius: "8px",
+    cursor: "pointer",
+  }}
+>
+  🗑 Eliminar
 </button>
         </div>
       ))}
