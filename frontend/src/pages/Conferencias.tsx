@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Conferencia } from "../types/Conferencia";
 import { conferenciasIniciales } from "../services/conferencias";
 import FormularioConferencia from "../components/FormularioConferencia";
+import { cargarDatos, guardarDatos } from "../utils/localStorage";
 
 export default function Conferencias() {
   const [conferencias, setConferencias] =
-    useState<Conferencia[]>(conferenciasIniciales);
+    useState<Conferencia[]>(
+      () => cargarDatos("conferencias", conferenciasIniciales)
+    );
+
+  useEffect(() => {
+    guardarDatos("conferencias", conferencias);
+  }, [conferencias]);
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 

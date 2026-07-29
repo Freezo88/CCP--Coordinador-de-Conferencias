@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Agenda } from "../types/Agenda";
 import { agendaInicial } from "../services/agenda";
 import { oradoresIniciales } from "../services/oradores";
 import { conferenciasIniciales } from "../services/conferencias";
 import FormularioAgenda from "../components/FormularioAgenda";
+import { cargarDatos, guardarDatos } from "../utils/localStorage";
 
 export default function AgendaPage() {
-  const [agenda, setAgenda] = useState<Agenda[]>(agendaInicial);
+  const [agenda, setAgenda] = useState<Agenda[]>(
+    () => cargarDatos("agenda", agendaInicial)
+  );
+
+  useEffect(() => {
+    guardarDatos("agenda", agenda);
+  }, [agenda]);
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 

@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Orador } from "../types/Orador";
 import { oradoresIniciales } from "../services/oradores";
+import { cargarDatos, guardarDatos } from "../utils/localStorage";
 
 export default function Oradores() {
-  const [oradores, setOradores] = useState<Orador[]>(oradoresIniciales);
+ const [oradores, setOradores] = useState<Orador[]>(
+  () => cargarDatos("oradores", oradoresIniciales)
+);
+useEffect(() => {
+  guardarDatos("oradores", oradores);
+}, [oradores]);
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
